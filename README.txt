@@ -1,10 +1,17 @@
 Batch Script that grants you access to any locked windows PC.
 
-It must be cy calling it with 
-its parameters.
-It must be run in a cmd enviroment with administrator privilages.
-current version :1.0
+It must be installed from a commandline environment with administrator privileges.
 
+To install Run:
+```Batch
+Backdoor.bat -install
+```
+
+For Help :
+
+```Batch
+
+```
 
 for help use -h or /? or /help
 
@@ -17,6 +24,5 @@ open media files in  a locked target computer you have physical access to
 modify files
 etc.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE5NTEwNDgwMjcsLTE5MDc2NDEyOThdfQ
-==
+eyJoaXN0b3J5IjpbMjA0NzMwNzQxOSwtMTkwNzY0MTI5OF19
 -->
