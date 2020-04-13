@@ -1,4 +1,6 @@
-A plugin gives you access to any locked windows pc by calling it with 
+Batch Script that grants you access to any locked windows PC.
+
+It must be cy calling it with 
 its parameters.
 It must be run in a cmd enviroment with administrator privilages.
 current version :1.0
@@ -15,5 +17,6 @@ open media files in  a locked target computer you have physical access to
 modify files
 etc.
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE5MDc2NDEyOThdfQ==
+eyJoaXN0b3J5IjpbLTE5NTEwNDgwMjcsLTE5MDc2NDEyOThdfQ
+==
 -->
