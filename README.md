@@ -7,7 +7,7 @@ Backdoor.bat -install
 ``
 
 For Help and documentation :
-```Batch
+```
 -h or /? or /help
 ```
 Notice once installed, you can launch CMD from the lock screen by pressing Shift button multiple times, from there, you ca navigate through directories, copy/move files, etc from the CLI.
