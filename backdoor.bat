@@ -23,7 +23,7 @@ rem Argument handler ..
 If /i "[%1]"=="[]" (
 		set Prompt_Diag=1
 		Rem Prompt for installation [If no arguments parsed.]
-		Call :MsgBox 4 "[%~nx0]" "Install a Terminal Backdoor on :!computername! ? " "%tmp%\_prompt.vbs" vResponce
+		Call :MsgBox 4 "[%~nx0]" "Install a Terminal Backdoor on : \n \n Computer : !computername! \n USername : !username!" "%tmp%\_prompt.vbs" vResponce
 		Rem Subroutine MsgBox Assigns the Return code to varibale parsed at the 5th parameter 'vResponce'.
 		Rem 	6 = User Accepted installation.
 		Rem 	7 = User Declined installation.
@@ -48,7 +48,7 @@ If /i "[%1]"=="[]" (
 
 :: 			    		Check for program dependencies if any.. 
 :: These dependencies are wrapped using In2batch Resource wrapper available at 
-:: 			    		(link) and provided under MIT License.
+:: 			    		(https://github.com/KabueMurage/In2batch) and provided under MIT License.
 
 FOR %%A In (EULA.txt License.txt README.txt) DO (IF Not Exist "%%A" (Call :Extract_[%%A] "%cd%/%%A"))
 
@@ -95,8 +95,6 @@ FOR %%A In (EULA.txt License.txt README.txt) DO (IF Not Exist "%%A" (Call :Extra
 		)
 	)
 		set "End=%TIME%"
-		call :ElapsedTime Elapsed Start End
-		rem pause
 exit /b 0
 	
 rem Dynamic counter.
@@ -110,25 +108,6 @@ exit /b
 :GetCurrentCodePage <iReturnVar>
 for /f "tokens=4" %%a in ('chcp') do set %1=%%a
 Exit /b
-
-
-:ElapsedTime <outDiff> <inStartTime> <inEndTime>
-	set "Input=!%~2! !%~3!"
-
-	for /F "tokens=1,3 delims=0123456789 " %%A in ("!Input!") do set "vTime=%%A%%B "
-	for /F "tokens=1-8 delims=%vTime%" %%a in ("%Input%") do (
-			for %%A in ("@h1=%%a" "@m1=%%b" "@s1=%%c" "@c1=%%d" "@h2=%%e" "@m2=%%f" "@s2=%%g" "@c2=%%h") do (
-				for /F "tokens=1,2 delims==" %%A in ("%%~A") do (for /F "tokens=* delims=0" %%B in ("%%B") do set "%%A=%%B")
-			)
-		)
-	set /a "@d=(@h2-@h1)*360000+(@m2-@m1)*6000+(@s2-@s1)*100+(@c2-@c1), @sign=(@d>>31)&1, @d+=(@sign*24*360000), @h=(@d/360000), @d%%=360000, @m=@d/6000, @d%%=6000, @s=@d/100, @c=@d%%100"
-	if %@h% LEQ 9 set "@h=0%@h%"
-	if %@m% LEQ 9 set "@m=0%@m%"
-	if %@s% LEQ 9 set "@s=0%@s%"
-	if %@c% LEQ 9 set "@c=0%@c%"
-
-	set "%~1=%@h%%vTime:~0,1%%@m%%vTime:~0,1%%@s%%vTime:~1,1%%@c%"
-exit /b
 
 :InitDefaults
 	Set "#cs=rem/||(" & set "#ce=)"
@@ -207,10 +186,13 @@ rem There are five ways to output text to the console:
 	rem Stdout.Write "Hello"
 	rem WScript.Echo will output to console but only if the script is started using cscript.exe. It will output to message boxes if started using wscript.exe.
 :: & vbCrLf
-rem call :stringrep %myvar% "/n" "& vbCrLf &" formated_
-Echo  wscript.echo msgbox (WScript.Arguments(0), "%~1", WScript.Arguments(1))> "%~4"
+rem call :stringrep %myvar% "/n" "^& vbCrLf &" formated_
+rem https://docs.microsoft.com/en-us/previous-versions/windows/internet-explorer/ie-developer/scripting-articles/238kz954(v=vs.84)?redirectedfrom=MSDN
+
+Echo wscript.echo msgbox (Replace(WScript.Arguments(0), "\n" ,Chr^(13^)), "%~1", WScript.Arguments(1)) >> "%~4"
+rem msgbox "This is how" & vbcrlf & "to get a new line"
 for /f "tokens=* delims=" %%a in ('cscript //nologo "%~4" "%~3" "%~2"') do (
-	set %5=%%a
+	set %5=%%a=
 	del /f /q "%~4")
 exit /b 
 
