@@ -4,7 +4,7 @@ call :InitDefaults
 
 %#cs%
 
-	Backdoor project is for informational purposes only You take full responsibility for using this software!
+	This backdoor is for informational purposes only You take full responsibility for using this script!
 
 %#ce%
 
